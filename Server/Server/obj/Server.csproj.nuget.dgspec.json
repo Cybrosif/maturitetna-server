@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "D:\\Anej\\Code\\Server\\Server\\Server.csproj": {}
+    "D:\\Anej\\Code\\maturitetna-server\\Server\\Server\\Server.csproj": {}
   },
   "projects": {
-    "D:\\Anej\\Code\\Server\\Server\\Server.csproj": {
+    "D:\\Anej\\Code\\maturitetna-server\\Server\\Server\\Server.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\Anej\\Code\\Server\\Server\\Server.csproj",
+        "projectUniqueName": "D:\\Anej\\Code\\maturitetna-server\\Server\\Server\\Server.csproj",
         "projectName": "Server",
-        "projectPath": "D:\\Anej\\Code\\Server\\Server\\Server.csproj",
+        "projectPath": "D:\\Anej\\Code\\maturitetna-server\\Server\\Server\\Server.csproj",
         "packagesPath": "C:\\Users\\anejd\\.nuget\\packages\\",
-        "outputPath": "D:\\Anej\\Code\\Server\\Server\\obj\\",
+        "outputPath": "D:\\Anej\\Code\\maturitetna-server\\Server\\Server\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\anejd\\AppData\\Roaming\\NuGet\\NuGet.Config",
