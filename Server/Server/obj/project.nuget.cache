@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "n/vtzjD9DCH43ziuSPGL76zE9nijUgl65N4x52hDTxXVAtvAuhB6rtVfIi+bhOFCqlqSuKsSwfMqc7fFR9kVjA==",
+  "success": true,
+  "projectFilePath": "D:\\Anej\\Code\\Server\\Server\\Server.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\anejd\\.nuget\\packages\\mqttnet\\4.3.1.873\\mqttnet.4.3.1.873.nupkg.sha512",
+    "C:\\Users\\anejd\\.nuget\\packages\\newtonsoft.json\\13.0.3\\newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
+  "logs": []
+}
