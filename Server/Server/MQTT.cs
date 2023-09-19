@@ -26,6 +26,7 @@ namespace MQTT
 					.WithTopicFilter(
 						f =>
 						{
+							//f.WithQualityOfServiceLevel(MqttQualityOfServiceLevel.AtLeastOnce);
 							f.WithTopic("test/test123");
 						})
 					.Build();

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Timers;
 using System.Net.Http;
 using System.Threading;
 using System.Threading.Tasks;
@@ -20,7 +21,18 @@ namespace ServerApp
 		static async Task Main(string[] args)
 		{
 			MQTT.mqtt mqtt = new MQTT.mqtt();
+			
+
+			System.Timers.Timer timer1 = new System.Timers.Timer(40000);
+			timer1.Elapsed += Timer1Elapsed;
+			timer1.Start();
+
 			await mqtt.Handle_Received_Application_Message();
+		}
+
+		private static async void Timer1Elapsed(object sender, ElapsedEventArgs e)
+		{
+			
 		}
 	}
 }
