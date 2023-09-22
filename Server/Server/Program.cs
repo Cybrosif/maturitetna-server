@@ -12,6 +12,7 @@ using MQTTnet.Protocol;
 using System.Text;
 using Newtonsoft.Json;
 using SystemInfo;
+using Server;
 //using MQTT;
 
 
@@ -41,7 +42,9 @@ namespace ServerApp
 				mqttClient.ApplicationMessageReceivedAsync += e =>
 				{
 					string json = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
-
+					var response = JsonConvert.DeserializeObject<Configuration>(json);
+					string serverID = response.serverID;
+					Console.WriteLine(serverID);
 					MessageRecieved();
 
 					return Task.CompletedTask;
