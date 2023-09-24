@@ -30,7 +30,7 @@ namespace MQTT
 							f.WithTopic("test/test123");
 						})
 					.Build();
-
+ 
 				mqttClient.ApplicationMessageReceivedAsync += e =>
 				{
 					string json = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
