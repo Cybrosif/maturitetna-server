@@ -13,52 +13,16 @@ using System.Text;
 using Newtonsoft.Json;
 using SystemInfo;
 using Server;
-//using MQTT;
-
+using MQTT;
+using System.Net.NetworkInformation;
 
 namespace ServerApp
 {
 	public class Program
 	{
 		public static System.Timers.Timer timer1 = new System.Timers.Timer(40000);
-		public static async Task Handle_Received_Application_Message()
-		{
-			var mqttFactory = new MqttFactory();
-			using (var mqttClient = mqttFactory.CreateMqttClient())
-			{
-				var mqttClientOptions = new MqttClientOptionsBuilder().WithTcpServer("91.121.93.94", 1883).Build();
-
-				await mqttClient.ConnectAsync(mqttClientOptions, CancellationToken.None);
-
-				var mqttSubscribeOptions = mqttFactory.CreateSubscribeOptionsBuilder()
-					.WithTopicFilter(
-						f =>
-						{
-							f.WithQualityOfServiceLevel(MqttQualityOfServiceLevel.AtLeastOnce);
-							f.WithTopic("test/test123/onlinecheck");
-						})
-					.Build();
-
-				mqttClient.ApplicationMessageReceivedAsync += e =>
-				{
-					string json = Encoding.UTF8.GetString(e.ApplicationMessage.Payload);
-					var response = JsonConvert.DeserializeObject<Configuration>(json);
-					string serverID = response.serverID;
-					Console.WriteLine(serverID);
-					MessageRecieved();
-
-					return Task.CompletedTask;
-				};
-
-				await mqttClient.SubscribeAsync(mqttSubscribeOptions, CancellationToken.None);
-
-				Console.WriteLine("MQTT client subscribed to topic.");
-
-				Console.WriteLine("Press enter to exit.");
-				Console.ReadLine();
-			}
-		}
-
+		public static MQTT.mqtt reciever = new MQTT.mqtt();
+		public static bool[] serverArray = new bool[3];
 		static async Task Main(string[] args)
 		{
 			
@@ -67,13 +31,35 @@ namespace ServerApp
 			timer1.Elapsed += Timer1Elapsed;
 			timer1.Start();
 
+			reciever.MessageReceived += (sender, message) =>
+			{
+				Console.WriteLine("Received message: " + message);
+				int point = int.Parse(message);
+				serverArray[point - 1] = true;
 
-			await Handle_Received_Application_Message();
+			};
+
+			await reciever.Handle_Received_Application_Message();
 		}
 
 		private static async void Timer1Elapsed(object sender, ElapsedEventArgs e)
 		{
-			Console.WriteLine("server dol padu :(");
+			for (int i = 0; i < serverArray.Length; i++)
+			{
+				if (serverArray[i])
+				{
+					Console.WriteLine($"Server {i + 1} online");
+				}
+				else
+				{
+					Console.WriteLine($"Server {i + 1} offline");
+				}
+			}
+
+			for (int i = 0; i < serverArray.Length; i++)
+			{
+				serverArray[i] = false;
+			}
 		}
 
 		public static void MessageRecieved()
