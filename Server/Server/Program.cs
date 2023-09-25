@@ -61,13 +61,6 @@ namespace ServerApp
 				serverArray[i] = false;
 			}
 		}
-
-		public static void MessageRecieved()
-		{
-			Console.WriteLine("dobu");
-			timer1.Stop();
-			timer1.Start();
-		}
 	}
 }
 
